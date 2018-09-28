@@ -6,7 +6,6 @@ using WebPixSeguranca.Model;
 using SegurancaBO;
 using Entity;
 using WebPixSeguranca.Helper.Auxiliares;
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.Cors;
 
 namespace WebPixSeguranca.Controllers

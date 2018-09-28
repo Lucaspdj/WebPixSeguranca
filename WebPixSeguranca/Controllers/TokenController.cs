@@ -4,6 +4,7 @@ using SegurancaBO;
 
 namespace WebPixSeguranca.Controllers
 {
+    
     [Produces("application/json")]
     [Route("api/[controller]/[action]")]
     public class TokenController : Controller

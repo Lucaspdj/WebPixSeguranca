@@ -18,5 +18,11 @@ namespace WebPixSeguranca.Controllers
         {
             return PermissaoDAO.GetAll().Where(x => x.idCliente == idCliente).ToList();
         }
+
+        [HttpGet("{idUsuario}")]
+        public async Task<Permissao> GetPermissoesPorUsuario(int idUsuario)
+        {
+           return await PermissaoDAO.CarregarPermissaoByUsuarioAsync(idUsuario);
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace WebPixSeguranca
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseUrls(url.Url)
                 //Lucas
-               // .UseUrls("http://localhost.com:5300")
+                //.UseUrls("http://localhost:5300")
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()

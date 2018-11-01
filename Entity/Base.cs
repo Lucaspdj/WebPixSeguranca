@@ -13,7 +13,7 @@ namespace Entity
         public DateTime DateAlteracao { get; set; }
         public int UsuarioCriacao { get; set; }
         public int UsuarioEdicao { get; set; }
-        public string Ativo { get; set; }
+        public bool Ativo { get; set; }
         public int Status { get; set; }
         public int idCliente { get; set; }
     }

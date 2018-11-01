@@ -48,7 +48,7 @@ namespace WebPixSeguranca.Helper.Auxiliares
             var permissao = await PermissaoDAO.CarregarPermissaoByUsuarioAsync(idusuario);
             bool retorno = false;
 
-            if (acao.TipoAcao == 3)
+            if (acao.TipoAcao == 4) //Novo id Para Ações Publicas (corrigir)
                 return true;
 
             string[] acoes = permissao.idTipoAcao.Split(',');
@@ -105,10 +105,11 @@ namespace WebPixSeguranca.Helper.Auxiliares
                 {
                     foreach (ParametroViewModel parametro in listaAcaoes)
                     {
-                        if (parametro.Tipo == "get")
-                            url += "/" + GetPropValue(conteudo, parametro.Nome).ToString();
-                        else if (parametro.Nome == "idCliente")
+
+                        if (parametro.Nome == "idCliente")
                             url += "/" + idCliente;
+                        else if (parametro.Tipo == "get" && parametro.Nome != "idCliente")
+                            url += "/" + GetPropValue(conteudo, parametro.Nome).ToString();
 
 
                     }

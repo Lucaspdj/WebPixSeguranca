@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using WebPixPrincipalRepository;
 using WebPixSeguranca.Model;
 
 
@@ -63,6 +64,30 @@ namespace WebPixSeguranca.Helper.Auxiliares
 
             return retorno;
 
+        }
+
+        public static async Task<bool> VerificaUsuarioPermissaoAsync(AcaoViewModel acao, int idusuario, int idCliente)
+        {
+            if (acao.TipoAcao == 4)
+                return true;
+
+            var perfil = await PerfilDAO.CarregaPerfilByUsuario(idusuario, idCliente);
+            var permissoesIDs = perfil.idPermissao.Split(',').Select(id => Convert.ToInt32(id));
+            var permissoes = await PermissaoDAO.GetByIdsAndMotor(permissoesIDs, acao.idMotorAux);
+
+            var retorno = false;
+
+            foreach (var item in permissoes)
+            {
+                var tipoAcoes = item.idTipoAcao.Split(',').Select(id => Convert.ToInt32(id));
+
+                if (tipoAcoes.Contains(acao.TipoAcao))
+                {
+                    retorno = true;
+                }
+            }
+
+            return retorno;
         }
 
         public static async Task<object> GetRetornoAuxAsync(MotorAuxViewModel motorAux, AcaoViewModel acoesUsuario, Token token, object conteudo, int idCliente)

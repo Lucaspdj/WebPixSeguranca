@@ -44,6 +44,23 @@ namespace Repository
                 return false;
             }
         }
+
+        public async static Task<IEnumerable<Permissao>> GetByIdsAsync(IEnumerable<int> ids)
+        {
+            try
+            {
+                using (var db = new WebPixContext())
+                {
+                    var result = await db.Permissao.Where(p => ids.Contains(p.ID) && Convert.ToBoolean(p.VAdmin)).ToListAsync();
+                    return result;
+                }
+            }
+            catch(Exception e)
+            {
+                return new List<Permissao>();
+            }
+        }
+
         public static List<Permissao> GetAll()
         {
             try
@@ -98,6 +115,23 @@ namespace Repository
             {
                 return new Permissao();
 
+            }
+        }
+
+        public async static Task<IEnumerable<Permissao>> GetByIdsAndMotor(IEnumerable<int> permissoesIDs, int idMotorAux)
+        {
+            try
+            {
+                using (var db = new WebPixContext())
+                {
+                    var result = await db.Permissao.Where(p => permissoesIDs.Contains(p.ID) 
+                        && p.IdAux.Equals(idMotorAux)).ToListAsync();
+                    return result;
+                }
+            }
+            catch (Exception e)
+            {
+                return new List<Permissao>();
             }
         }
     }

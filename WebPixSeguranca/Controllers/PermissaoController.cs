@@ -24,5 +24,12 @@ namespace WebPixSeguranca.Controllers
         {
            return await PermissaoDAO.CarregarPermissaoByUsuarioAsync(idUsuario);
         }
+
+        [ActionName("BuscaPermissoesPorIds")]
+        [HttpPost]
+        public async Task<IEnumerable<Permissao>> GetPermissoesAsync([FromBody]IEnumerable<int> ids)
+        {
+            return await PermissaoDAO.GetByIdsAsync(ids);
+        }
     }
 }

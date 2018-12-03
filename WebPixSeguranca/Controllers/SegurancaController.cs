@@ -24,7 +24,7 @@ namespace WebPixSeguranca.Controllers
             AcaoViewModel acoesUsuario = MotorAux.Acoes.Where(x => x.Nome == acao).FirstOrDefault();
 
             //Verifica as permissões do usuario naquele motor
-            if (await Auxiliares.verificaPermissaoAsync(acoesUsuario, idusuario, idcliente))
+            if (await Auxiliares.VerificaUsuarioPermissaoAsync(acoesUsuario, idusuario, idcliente))
             {
                 //Gera o token para acessar o motor auxiliar
                 Token token = new Token { idCliente = idcliente, idUsuario = idusuario };
@@ -49,7 +49,7 @@ namespace WebPixSeguranca.Controllers
 
 
             //Verifica as permissões do usuario naquele motor
-            if (await Auxiliares.verificaPermissaoAsync(acoesUsuario, idusuario, idcliente))
+            if (await Auxiliares.VerificaUsuarioPermissaoAsync(acoesUsuario, idusuario, idcliente))
             {
                 //Gera o token para acessar o motor auxiliar
                 Token token = new Token { idCliente = idcliente, idUsuario = idusuario };

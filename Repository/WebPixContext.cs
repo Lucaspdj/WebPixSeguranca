@@ -11,6 +11,8 @@ namespace Repository
         public DbSet<Permissao> Permissao { get; set; }
         public DbSet<Token> Token { get; set; }
         public DbSet<UsuarioPermissao> UsuarioPermissao { get; set; }
+        public DbSet<Perfil> Perfil { get; set; }
+        public DbSet<UsuarioXPerfil> UsuarioXPerfil { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -24,9 +24,8 @@ namespace WebPixSeguranca
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseUrls(url.Url)
-                //Lucas
-               // .UseUrls("http://localhost.com:5300")
-                .UseIISIntegration()
+                //Lucas :) :D 
+                //.UseUrls("http://localhost:5300")
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();

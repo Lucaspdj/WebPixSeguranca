@@ -7,6 +7,7 @@ using SegurancaBO;
 using Entity;
 using WebPixSeguranca.Helper.Auxiliares;
 using Microsoft.AspNetCore.Cors;
+using WebPixSeguranca.Helper.Extensions;
 
 namespace WebPixSeguranca.Controllers
 {
@@ -17,6 +18,7 @@ namespace WebPixSeguranca.Controllers
     {
         // POST: api/Seguranca
         [HttpPost("{aux}/{acao}/{idcliente}/{idusuario}")]
+        [RequestSizeLimit(valueCountLimit: 999999999)] // e.g. 2 GB request limit
         public async Task<JsonResult> Post(string aux, string acao, int idcliente, int idusuario, [FromBody]Object conteudo)
         {
             //Colhe informações do motor que o usuario esta tentado acessar

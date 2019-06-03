@@ -23,9 +23,12 @@ namespace WebPixSeguranca
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseUrls(url.Url)
                 //Lucas :) :D 
-                //.UseUrls("http://localhost:5300")
+                #if DEBUG
+                .UseUrls("http://localhost:5300")
+                #else
+                .UseUrls(url.Url)
+                #endif
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
                 .Build();

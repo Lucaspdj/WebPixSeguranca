@@ -24,7 +24,7 @@ namespace WebPixSeguranca.Helper.Auxiliares
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://inapi.mundowebpix.com.br:5400");
+                    client.BaseAddress = new Uri("http://localhost:5400");
                     var url = "api/motoraux/acessarmotor/" + aux;
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     HttpResponseMessage response = await client.GetAsync(url);
@@ -68,7 +68,7 @@ namespace WebPixSeguranca.Helper.Auxiliares
 
         public static async Task<bool> VerificaUsuarioPermissaoAsync(AcaoViewModel acao, int idusuario, int idCliente)
         {
-            if (acao.TipoAcao == 4)
+            if (acao.TipoAcao == 3)
                 return true;
 
             var perfil = await PerfilDAO.CarregaPerfilByUsuario(idusuario, idCliente);
@@ -94,8 +94,8 @@ namespace WebPixSeguranca.Helper.Auxiliares
         {
             List<ParametroViewModel> listaAcaoes = acoesUsuario.Parametro.OrderBy(x => x.Ordem).ToList();
 
-            RestClient client = new RestClient(motorAux.Url);
-            var url = acoesUsuario.Caminho;
+            RestClient client = new RestClient(motorAux.Url.Trim());
+            var url = acoesUsuario.Caminho.Trim();
             RestRequest request = null;
 
             if (listaAcaoes.Any(x => x.Tipo == "body"))
@@ -107,7 +107,7 @@ namespace WebPixSeguranca.Helper.Auxiliares
                     foreach (ParametroViewModel parametro in listaAcaoes)
                     {
                         if (parametro.Tipo == "get")
-                            url += "/" + GetPropValue(conteudo, parametro.Nome).ToString();
+                            url += "/" + GetPropValue(conteudo, parametro.Nome).ToString().Trim();
                     }
                 }
                 url += "/" + token.GuidSec;
@@ -134,7 +134,7 @@ namespace WebPixSeguranca.Helper.Auxiliares
                         if (parametro.Nome == "idCliente")
                             url += "/" + idCliente;
                         else if (parametro.Tipo == "get" && parametro.Nome != "idCliente")
-                            url += "/" + GetPropValue(conteudo, parametro.Nome).ToString();
+                            url += "/" + GetPropValue(conteudo, parametro.Nome).ToString().Trim();
 
 
                     }

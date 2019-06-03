@@ -16,9 +16,7 @@ namespace Repository
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // optionsBuilder.UseSqlServer(@"Server=DESKTOP-9B04LJT\SQLEXPRESS;Database=WebPixPrincipal;Trusted_Connection=True;Integrated Security = True;");
-            optionsBuilder.UseSqlServer(@"Data Source=34.226.175.244;Initial Catalog=WebPixSeguranca;Persist Security Info=True;User ID=sa;Password=StaffPro@123;");
-
+            optionsBuilder.UseSqlServer(@"Data Source=35.198.27.36;Initial Catalog=WpSeguranca;Persist Security Info=True;User ID=Dev;Password=WebPix@123;");
         }
     }
 }

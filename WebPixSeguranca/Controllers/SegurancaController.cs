@@ -45,6 +45,7 @@ namespace WebPixSeguranca.Controllers
         public async Task<JsonResult> Get(string aux, string acao, int idcliente, int idusuario)
         {
             //Colhe informações do motor que o usuario esta tentado acessar
+
             var MotorAux = await Auxiliares.GetInfoMotorAux(aux, idcliente);
             AcaoViewModel acoesUsuario = MotorAux.Acoes.Where(x => x.Nome == acao).FirstOrDefault();
 
